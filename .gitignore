@@ -1,0 +1,10 @@
+
+*.project
+
+*.prefs
+
+*.classpath
+
+*.settings
+
+*.springBeans
