@@ -25,3 +25,5 @@ sample cloud native application composed of multiple microservices
 1. (Optional) Report-Uploader uploads the report to target system via FTPS
     1. Uploads file
     1. Sends notification of file uploaded
+
+![Componen Diagramm](/docs/components.png)
