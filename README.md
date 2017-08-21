@@ -2,11 +2,11 @@
 sample cloud native application composed of multiple microservices
 
 ## services
-- order manager
-- report factories
-- report repository
-- report uploader
-- report emailer
+- Order Manager
+- Report Factory
+- Report Repository
+- Report Uploader
+- Report Emailer
 
 ## workflow
 1. Report order of product X sent via API to Report-Order-Manager
