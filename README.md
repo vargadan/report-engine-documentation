@@ -3,7 +3,7 @@ sample cloud native application composed of multiple microservices
 
 ## services
 - Order Manager
-- Report Factory
+- Report Factories
 - Report Repository
 - Report Uploader
 - Report Emailer
