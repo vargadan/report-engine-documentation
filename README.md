@@ -10,8 +10,8 @@ sample cloud native application composed of multiple microservices
 
 ## workflow
 1.	Report order of product X sent via API to Report-Order-Manager
-  1.	Report order saved in Report-Order-Manager
-  1.	Report order event sent to corresponding topic
+  2.	Report order saved in Report-Order-Manager
+  2.	Report order event sent to corresponding topic
 1.	Corresponding X-Report-Factory processes report order
   1.	Report factory starts processing the report
   1.	Report factory sends order status updates 
