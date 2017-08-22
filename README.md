@@ -19,9 +19,6 @@ sample cloud native application composed of multiple microservices
 1. Report-Repository saves the report for later retrieval
     1. Saves xml file in database
     1. Sends event that file has been saved
-1. (Optional) Report-Emailer emails notification to requester about the report being ready
-    1. Sends email 
-    1. Sends notification of email-sent status event
 1. (Optional) Report-Uploader uploads the report to target system via FTPS
     1. Uploads file
     1. Sends notification of file uploaded
