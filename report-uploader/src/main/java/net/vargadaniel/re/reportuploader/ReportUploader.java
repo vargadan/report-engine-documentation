@@ -28,8 +28,8 @@ public class ReportUploader {
 		String productName = (String) reportMsg.getHeaders().get("productName");
 		String fileName = productName + "_" + orderId + ".xml";
 		String server = "35.193.121.213";
-		String username = "ftpuser";
-		String password = "hello108";
+		String username = "";
+		String password = "";
 		if (uploadReport(content.getBytes(), fileName, server, username, password)) {
 			return new StatusUpdate(orderId, "report uploaded successfully");
 		} else {
