@@ -8,16 +8,12 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class DummyReport {
+public class DummyReport extends TransactionStatistics {
 	
-	public static class DailyStats {
+	public class DailiyDummyReportStats extends TransactionStatistics implements Comparable<DailiyDummyReportStats> {
 		
-		LocalDate date;
+		private LocalDate date;
 		
-		BigDecimal dailySum;
-		
-		BigDecimal dailyAverage;
-
 		@XmlElement
 		public LocalDate getDate() {
 			return date;
@@ -27,33 +23,29 @@ public class DummyReport {
 			this.date = date;
 		}
 
-		@XmlElement
-		public BigDecimal getDailySum() {
-			return dailySum;
-		}
-
-		public void setDailySum(BigDecimal dailySum) {
-			this.dailySum = dailySum;
-		}
-
-		@XmlElement
-		public BigDecimal getDailyAverage() {
-			return dailyAverage;
-		}
-
-		public void setDailyAverage(BigDecimal dailyAverage) {
-			this.dailyAverage = dailyAverage;
+		@Override
+		public int compareTo(DailiyDummyReportStats o) {
+			return this.date.compareTo(o.date);
 		}
 		
 	}
 	
 	private String cif;
 	
-	private SortedSet<DailyStats> dailyStats;
+	private LocalDate fromDate;
 	
-	private BigDecimal totalSum;
+	private LocalDate toDate;
 	
-	private BigDecimal totalAverage;
+	private SortedSet<DailiyDummyReportStats> dailyStats;
+
+	@XmlElement
+	public SortedSet<DailiyDummyReportStats> getDailyStats() {
+		return dailyStats;
+	}
+
+	public void setDailyStats(SortedSet<DailiyDummyReportStats> dailyStats) {
+		this.dailyStats = dailyStats;
+	}
 
 	@XmlElement
 	public String getCif() {
@@ -65,30 +57,81 @@ public class DummyReport {
 	}
 
 	@XmlElement
-	public SortedSet<DailyStats> getDailyStats() {
-		return dailyStats;
+	public LocalDate getFromDate() {
+		return fromDate;
 	}
 
-	public void setDailyStats(SortedSet<DailyStats> dailyStats) {
-		this.dailyStats = dailyStats;
-	}
-
-	@XmlElement
-	public BigDecimal getTotalSum() {
-		return totalSum;
-	}
-
-	public void setTotalSum(BigDecimal totalSum) {
-		this.totalSum = totalSum;
+	public void setFromDate(LocalDate fromDate) {
+		this.fromDate = fromDate;
 	}
 
 	@XmlElement
-	public BigDecimal getTotalAverage() {
-		return totalAverage;
+	public LocalDate getToDate() {
+		return toDate;
 	}
 
-	public void setTotalAverage(BigDecimal totalAverage) {
-		this.totalAverage = totalAverage;
+	public void setToDate(LocalDate toDate) {
+		this.toDate = toDate;
+	}	
+	
+
+}
+
+abstract class TransactionStatistics {
+	
+	private BigDecimal Sum;
+	
+	private BigDecimal Average;
+	
+	private Long count; 
+	
+	private BigDecimal min;
+	
+	private BigDecimal max;
+
+	@XmlElement
+	public BigDecimal getSum() {
+		return Sum;
 	}
 
+	public void setSum(BigDecimal Sum) {
+		this.Sum = Sum;
+	}
+
+	@XmlElement
+	public BigDecimal getAverage() {
+		return Average;
+	}
+
+	public void setAverage(BigDecimal Average) {
+		this.Average = Average;
+	}
+
+	@XmlElement
+	public Long getCount() {
+		return count;
+	}
+
+	public void setCount(Long count) {
+		this.count = count;
+	}
+
+	@XmlElement
+	public BigDecimal getMin() {
+		return min;
+	}
+
+	public void setMin(BigDecimal min) {
+		this.min = min;
+	}
+
+	@XmlElement
+	public BigDecimal getMax() {
+		return max;
+	}
+
+	public void setMax(BigDecimal max) {
+		this.max = max;
+	}
+	
 }

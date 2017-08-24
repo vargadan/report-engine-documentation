@@ -1,4 +1,4 @@
-package net.vargadaniel.re.ordermanager;
+package net.vargadaniel.re.reportfactory.dummy;
 
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
@@ -7,11 +7,9 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.SubscribableChannel;
 
-import net.vargadaniel.re.ordermanager.ReportEngine;
-
 @Configuration
-public class OrderManagerTestConfigurator {
-
+public class DummyReportEngineTestConfigurator {
+	
 	@Bean
 	@Primary
 	public ReportEngine reportEngine() {
@@ -26,9 +24,14 @@ public class OrderManagerTestConfigurator {
 			public SubscribableChannel products() {
 				return Mockito.mock(SubscribableChannel.class);
 			}
-			
+
 			@Override
-			public MessageChannel orders() {
+			public SubscribableChannel orders() {
+				return Mockito.mock(SubscribableChannel.class);
+			}
+
+			@Override
+			public MessageChannel reportFiles() {
 				return Mockito.mock(MessageChannel.class);
 			}
 		};

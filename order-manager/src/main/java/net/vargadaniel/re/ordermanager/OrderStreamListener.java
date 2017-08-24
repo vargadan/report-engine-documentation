@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.Message;
-import org.springframework.stereotype.Component;
 
 import net.vargadaniel.re.ordermanager.model.Order;
 import net.vargadaniel.re.ordermanager.model.OrderStatus;
@@ -14,7 +13,6 @@ import net.vargadaniel.re.ordermanager.model.Product;
 import net.vargadaniel.re.ordermanager.vo.StatusUpdate;
 
 @EnableBinding(ReportEngine.class)
-@Component
 public class OrderStreamListener {
 	
 	static Logger log = LoggerFactory.getLogger(OrderStreamListener.class);
