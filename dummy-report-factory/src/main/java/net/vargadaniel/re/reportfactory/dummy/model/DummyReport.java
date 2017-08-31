@@ -5,12 +5,13 @@ import java.time.LocalDate;
 import java.util.SortedSet;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class DummyReport extends TransactionStatistics {
 	
-	public class DailiyDummyReportStats extends TransactionStatistics implements Comparable<DailiyDummyReportStats> {
+	public static class DailiyDummyReportStats extends TransactionStatistics implements Comparable<DailiyDummyReportStats> {
 		
 		private LocalDate date;
 		
@@ -38,7 +39,8 @@ public class DummyReport extends TransactionStatistics {
 	
 	private SortedSet<DailiyDummyReportStats> dailyStats;
 
-	@XmlElement
+	@XmlElementWrapper(name="dailyStats")
+	@XmlElement(name="dailyStat")
 	public SortedSet<DailiyDummyReportStats> getDailyStats() {
 		return dailyStats;
 	}

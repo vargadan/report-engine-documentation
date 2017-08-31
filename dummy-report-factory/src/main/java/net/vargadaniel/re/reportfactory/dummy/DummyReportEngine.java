@@ -161,7 +161,7 @@ public class DummyReportEngine {
 			final LocalDate tdate = date;
 			DoubleSummaryStatistics dailySummaryStats = StreamSupport.stream(transactions.spliterator(), false).filter(t -> t.getDate().equals(tdate))
 					.mapToDouble(DummyTransaction::getAmountAsDoube).summaryStatistics();
-			DailiyDummyReportStats dailyReportStats = report.new DailiyDummyReportStats();
+			DailiyDummyReportStats dailyReportStats = new DailiyDummyReportStats();
 			BeanUtils.copyProperties(dailyReportStats, dailySummaryStats);
 			dailyReportStats.setDate(tdate);
 			dailyStats.add(dailyReportStats);
@@ -177,9 +177,8 @@ public class DummyReportEngine {
 		reportEngine.statusUpdates()
 				.send(MessageBuilder.withPayload(new StatusUpdate(Long.toString(orderId), status)).build());
 	}
-
-	void publishReport(Long orderId, DummyReport report) throws JAXBException {
-
+	
+	String convertReportToXml(DummyReport report) throws JAXBException {
 		JAXBContext jaxbContext = JAXBContext.newInstance(DummyReport.class);
 		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
@@ -190,6 +189,11 @@ public class DummyReportEngine {
 		jaxbMarshaller.marshal(report, os);
 
 		String xml = os.toString();
+		return xml;
+	}
+
+	void publishReport(Long orderId, DummyReport report) throws JAXBException {
+		String xml = convertReportToXml(report);
 		log.info("XML report for order {} is : \n{}", orderId, xml);
 		Message<String> reportFileMsg = MessageBuilder.withPayload(xml).setHeader("orderId", orderId)
 				.setHeader("productName", DummyReportMeta.NAME).build();

@@ -6,28 +6,28 @@ spring:
       addresses: rabbitmq
    cloud:
       stream:
-        bindings:
-          products:
-            destination: productsTopic
-            content-type: application/json
-            group: report-factory
-          orders:
-            destination: ordersTopic
-            content-type: application/json
-            group: report-factory
-          statusUpdates:
-            destination: statusUpdatesTopic
-            content-type: application/json
-            group: report-factory
-          rabbit:
-            binder:
-              nodes: rabbitmq
-              adminAddresses: rabbitmq
+         bindings:
+            products:
+               destination: productsTopic
+               content-type: application/json
+               group: report-factory
+            orders:
+               destination: ordersTopic
+               content-type: application/json
+               group: report-factory
+            statusUpdates:
+               destination: statusUpdatesTopic
+               content-type: application/json
+               group: report-factory
+            rabbit:
+               binder:
+                  nodes: rabbitmq
+                  adminAddresses: rabbitmq
 security:
-  oauth2:
-    resource:
-      userInfoUri: http://identity-service:8080/user		
+   oauth2:
+      resource:
+         userInfoUri: http://identity-service:8080/user		
 logging:
-    level:
+   level:
       org.springframework: INFO
       org.springframework.security: DEBUG

@@ -38,6 +38,9 @@ public class DummyReportEngineTest {
 		Assert.assertEquals("1", report.getCif());
 		Assert.assertNotNull(report.getDailyStats());
 		Assert.assertEquals(31, report.getDailyStats().size());
+		
+		String xml = engine.convertReportToXml(report);
+		Assert.assertNotNull(xml);
 	}
 
 }

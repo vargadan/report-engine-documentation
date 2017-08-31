@@ -38,11 +38,7 @@ public class ReportRepoApp {
 		
 		reportRepository.save(report);
 	}
-	
-	@RequestMapping(path="/hello/{id}", method=RequestMethod.GET, produces="text/plain")
-	ResponseEntity<String> dummy(@PathVariable("id") Long id) {
-		return new ResponseEntity<>("hello : " + id, HttpStatus.OK);
-	}
+
 	
 	@RequestMapping(path="/files/{id}", method=RequestMethod.GET, produces="text/plain")
 	ResponseEntity<String> getFile(@PathVariable("id") Long id) {
