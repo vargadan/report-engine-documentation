@@ -10,3 +10,5 @@
 *.springBeans
 
 target
+
+config-server/config-repo/
