@@ -45,7 +45,7 @@ objects:
         uri: "https://github.com/vargadan/reporting-engine"
     strategy:
       jenkinsPipelineStrategy:
-        jenkinsfilePath: ./default-pipeline.groovy
+        jenkinsfilePath: openshift-setup/default-pipeline.groovy
       type: JenkinsPipeline
       type: Generic
   status:
