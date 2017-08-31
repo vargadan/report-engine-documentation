@@ -4,7 +4,7 @@ metadata:
   name: cicd-jenkins
 labels:
   template: cicd-jenkins
-  group: cicd
+  group: reportengine-cicd
 metadata:
   annotations:
     description: Creates Jenkins setup in CICD infrastructure
@@ -40,10 +40,12 @@ objects:
   spec:
     runPolicy: Serial
     source:
-      type: None
+      type: "Git"
+      git:
+        uri: "https://github.com/vargadan/reporting-engine"
     strategy:
       jenkinsPipelineStrategy:
-        jenkinsfilePath: https://github.com/vargadan/reporting-engine/blob/master/openshift-setup/default.pipeline
+        jenkinsfilePath: ./default-pipeline.groovy
       type: JenkinsPipeline
       type: Generic
   status:
