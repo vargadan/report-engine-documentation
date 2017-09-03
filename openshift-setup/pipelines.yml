@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: cicd-jenkins
+labels:
+  template: cicd-jenkins
+  group: reportengine-cicd
+metadata:
+  annotations:
+    description: Creates Jenkins setup in CICD infrastructure
+    iconClass: icon-jenkins
+    tags: jenkins,cicd
+  name: cicd
+message: The CI/CD infrastructure composed of Jenkins, Nexus Repository and SonarQube services has been created in your project.  Jenkins username/password are admin/${JENKINS_PASSWORD}
+parameters:
+- description: Password for the Jenkins user.
+  displayName: Jenkins Password
+  value: password
+  name: JENKINS_PASSWORD
+  required: true
+- description: DEV project name
+  displayName: DEV project name
+  value: dev
+  name: DEV_PROJECT
+  required: true
+- description: IT project name
+  displayName: IT project name
+  value: it
+  name: IT_PROJECT
+  required: true
+objects:
+# Pipeline
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: cicd-pipeline
+      name: cicd-pipeline
+    name: reportengine-pipeline
+  spec:
+    runPolicy: Serial
+    source:
+      type: "Git"
+      git:
+        uri: "https://github.com/vargadan/report-reportmanager"
+    strategy:
+      jenkinsPipelineStrategy:
+        jenkinsfilePath: pipeline.groovy
+      type: JenkinsPipeline
+      type: Generic
+  status:
+    lastVersion: 0
