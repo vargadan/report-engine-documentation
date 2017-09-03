@@ -9,3 +9,4 @@ oc policy add-role-to-user edit system:serviceaccount:reportengine-cicd:default 
 oc policy add-role-to-user edit system:serviceaccount:reportengine-cicd:jenkins -n reportengine-dev
 oc policy add-role-to-user edit system:serviceaccount:reportengine-cicd:jenkins -n reportengine-cicd
 oc process -f jenkins.yaml | oc create -f -
+oc process -f nexus.yaml | oc create -f -
