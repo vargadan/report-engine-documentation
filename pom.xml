@@ -4,17 +4,19 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>net.vargadaniel.reportengine</groupId>
-	<artifactId>report-engine</artifactId>
+	<artifactId>report-engine-root</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>reportengine</name>
+	<name>report-engine</name>
 
 	<modules>
-		<module>order-manager</module>
+		<module>report-order-manager</module>
 		<module>dummy-report-factory</module>
 		<module>report-repository</module>
 		<module>report-uploader</module>
+		<module>report-renderer</module>
+		<module>report-config-server</module>
 	</modules>
 
 </project>
