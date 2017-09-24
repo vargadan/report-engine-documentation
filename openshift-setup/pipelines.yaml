@@ -34,82 +34,82 @@ parameters:
   name: WEBHOOK_SECRET
   required: true
 objects:
-## order-manager
-#- apiVersion: v1
-#  kind: BuildConfig
-#  metadata:
-#    labels:
-#      app: order-manager
-#      name: order-manager-pipeline
-#    name: order-manager-pipeline
-#  spec:
-#    runPolicy: SerialLatestOnly
-#    source:
-#      type: "Git"
-#      git:
-#        ref: master
-#        uri: "https://github.com/vargadan/report-order-manager"
-#    strategy:
-#      jenkinsPipelineStrategy:
-#        jenkinsfilePath: pipeline.groovy
-#      type: JenkinsPipeline
-#    triggers:
-#      - github:
-#          secret: ${WEBHOOK_SECRET}
-#        type: GitHub
-#  status:
-#    lastVersion: 0
-##dummy-report-factory
-#- apiVersion: v1
-#  kind: BuildConfig
-#  metadata:
-#    labels:
-#      app: dummy-report-factory
-#      name: dummy-report-factory-pipeline
-#    name: dummy-report-factory-pipeline
-#  spec:
-#    runPolicy: SerialLatestOnly
-#    source:
-#      type: "Git"
-#      git:
-#        ref: master
-#        uri: "https://github.com/vargadan/dummy-report-factory"
-#    strategy:
-#      jenkinsPipelineStrategy:
-#        jenkinsfilePath: pipeline.groovy
-#      type: JenkinsPipeline
-#    triggers:
-#      - github:
-#          secret: ${WEBHOOK_SECRET}
-#        type: GitHub
-#  status:
-#    lastVersion: 0
-## report-uploader
-#- apiVersion: v1
-#  kind: BuildConfig
-#  metadata:
-#    labels:
-#      app: report-uploader
-#      name: report-uploader-pipeline
-#    name: report-uploader-pipeline
-#  spec:
-#    runPolicy: SerialLatestOnly
-#    source:
-#      type: "Git"
-#      git:
-#        ref: master
-#        uri: "https://github.com/vargadan/report-uploader"
-#    strategy:
-#      jenkinsPipelineStrategy:
-#        jenkinsfilePath: pipeline.groovy
-#      type: JenkinsPipeline
-#    triggers:
-#      - github:
-#          secret: ${WEBHOOK_SECRET}
-#        type: GitHub
-#  status:
-#    lastVersion: 0
-# report-renderer
+# order-manager
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: order-manager
+      name: order-manager-pipeline
+    name: order-manager-pipeline
+  spec:
+    runPolicy: SerialLatestOnly
+    source:
+      type: "Git"
+      git:
+        ref: master
+        uri: "https://github.com/vargadan/report-order-manager"
+    strategy:
+      jenkinsPipelineStrategy:
+        jenkinsfilePath: pipeline.groovy
+      type: JenkinsPipeline
+    triggers:
+      - github:
+          secret: ${WEBHOOK_SECRET}
+        type: GitHub
+  status:
+    lastVersion: 0
+#dummy-report-factory
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: dummy-report-factory
+      name: dummy-report-factory-pipeline
+    name: dummy-report-factory-pipeline
+  spec:
+    runPolicy: SerialLatestOnly
+    source:
+      type: "Git"
+      git:
+        ref: master
+        uri: "https://github.com/vargadan/dummy-report-factory"
+    strategy:
+      jenkinsPipelineStrategy:
+        jenkinsfilePath: pipeline.groovy
+      type: JenkinsPipeline
+    triggers:
+      - github:
+          secret: ${WEBHOOK_SECRET}
+        type: GitHub
+  status:
+    lastVersion: 0
+# report-uploader
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: report-uploader
+      name: report-uploader-pipeline
+    name: report-uploader-pipeline
+  spec:
+    runPolicy: SerialLatestOnly
+    source:
+      type: "Git"
+      git:
+        ref: master
+        uri: "https://github.com/vargadan/report-uploader"
+    strategy:
+      jenkinsPipelineStrategy:
+        jenkinsfilePath: pipeline.groovy
+      type: JenkinsPipeline
+    triggers:
+      - github:
+          secret: ${WEBHOOK_SECRET}
+        type: GitHub
+  status:
+    lastVersion: 0
+ #report-renderer
 - apiVersion: v1
   kind: BuildConfig
   metadata:
@@ -134,53 +134,53 @@ objects:
         type: GitHub
   status:
     lastVersion: 0
-## report-repository
-#- apiVersion: v1
-#  kind: BuildConfig
-#  metadata:
-#    labels:
-#      app: report-repository
-#      name: report-repository-pipeline
-#    name: report-repository-pipeline
-#  spec:
-#    runPolicy: SerialLatestOnly
-#    source:
-#      type: "Git"
-#      git:
-#        ref: master
-#        uri: "https://github.com/vargadan/report-repository"
-#    strategy:
-#      jenkinsPipelineStrategy:
-#        jenkinsfilePath: pipeline.groovy
-#      type: JenkinsPipeline
-#    triggers:
-#      - github:
-#          secret: ${WEBHOOK_SECRET}
-#        type: GitHub
-#  status:
-#    lastVersion: 0
-## report-config-server
-#- apiVersion: v1
-#  kind: BuildConfig
-#  metadata:
-#    labels:
-#      app: report-config-server
-#      name: report-config-server-pipeline
-#    name: report-config-server-pipeline
-#  spec:
-#    runPolicy: SerialLatestOnly
-#    source:
-#      type: "Git"
-#      git:
-#        ref: master
-#        uri: "https://github.com/vargadan/config-server"
-#    strategy:
-#      jenkinsPipelineStrategy:
-#        jenkinsfilePath: pipeline.groovy
-#      type: JenkinsPipeline
-#    triggers:
-#      - github:
-#          secret: ${WEBHOOK_SECRET}
-#        type: GitHub
-#  status:
-#    lastVersion: 0
+# report-repository
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: report-repository
+      name: report-repository-pipeline
+    name: report-repository-pipeline
+  spec:
+    runPolicy: SerialLatestOnly
+    source:
+      type: "Git"
+      git:
+        ref: master
+        uri: "https://github.com/vargadan/report-repository"
+    strategy:
+      jenkinsPipelineStrategy:
+        jenkinsfilePath: pipeline.groovy
+      type: JenkinsPipeline
+    triggers:
+      - github:
+          secret: ${WEBHOOK_SECRET}
+        type: GitHub
+  status:
+    lastVersion: 0
+# report-config-server
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: report-config-server
+      name: report-config-server-pipeline
+    name: report-config-server-pipeline
+  spec:
+    runPolicy: SerialLatestOnly
+    source:
+      type: "Git"
+      git:
+        ref: master
+        uri: "https://github.com/vargadan/config-server"
+    strategy:
+      jenkinsPipelineStrategy:
+        jenkinsfilePath: pipeline.groovy
+      type: JenkinsPipeline
+    triggers:
+      - github:
+          secret: ${WEBHOOK_SECRET}
+        type: GitHub
+  status:
+    lastVersion: 0
