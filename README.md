@@ -39,17 +39,11 @@ sample cloud native application composed of multiple microservices
 Adherance to the 12 Factor principles:
 
 1. Codebase
-
 Each service has its own Git repository (1:1 mapping between code repository and service), so that the code of uServices can be version and released independently from each other. The shared configuration of the system also has its own SCM repository (report-configuration). This way the config is decoupled from the code so that it can be versioned and released independently of the code of a service; this will be discussed more detail below.  
-
 1. Dependencies
-
 As each service is a Java project all dependencies are declared in the maven project object model (pom.xml) of the service, which is stored in the root of each service's source repository. The services have no dependencies on any native libraries.
-
 1. _Config_
-
 This factor recommends to read configuration from environment variables. Yet using environment variables to hold configuration values raises some concerns. First, environment variables of a container instance may be read on the container host, hence it is not suitable to store secrets. Second, as some configuration is also kept in version control it explicitly needs to be injected to the environment, which is not the case in case of configuration properties provided by the platform (i.e. properties of platform provided services). As each service is implemented with the *Spring Cloud* framework, the frameworks abstractions are used to read configuration values in application which makes it possible to access values provided in environment variables, applicaton configuration files and the configuration repository, all with the same uniform API.
-
 1. Backing Services
 1. Build, Release, Run
 1. Processes
