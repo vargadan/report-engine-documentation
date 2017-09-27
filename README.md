@@ -54,10 +54,13 @@ This principle recommends to inject the configuration (URL and credentials) as e
 ### 5. Build, ~~Release~~Deploy, Run
 This principle is the separation of build, deploy and run phases. ~~Release~~ is an unfortunate naming as in DevOps terminology the term 'release' refers to enabling a functionality in the system, whereas deployment refers to placing new application code/packages into an environment. In the OpenShift platform these steps are clearly separated as the build process is defined in Jenkine pipelines, the deployment by means of deployment descriptors, whereas applications are run as containers on the nodes of the OPC cluster.
 ### 6. Processes
-Running the services as stateless processes is guaranteed.
+Since the system is composed of stateless uServices implemented based on the *Spring Cloud* framework they also adhere to the cloud natice principles which overlaps with the 12 Factor ones at this point too. The services only rely on their backing services (databases) to store state, nothing is cached in memory, no of the services supports sticky sessions.
 ### 7. Port Binding 
+As the uServices are implemented with the Spring Cloud framework they are actually self contained single jar Spring Boot applications running an embedded Tomcat webserver binding to port 8080. Since K8S assigns a unique IP to each application pod (container) services can bind to the same port without conflict.
 ### 8. Concurrency
+As desribed above the system is composed of stateless, share-nothing services. Therefore horizontal scaling is easily achieved by starting/stopping new service instances on demand, which can be achieved leveraging OpenShift's autoscale feature.
 ### 9. Disposability
+Unfortunately, saasddd because the service are implemented in Java, startup and shutdown still takes some 10 seconds, which is considered slow in comparison to a native executable uService implemented in GoLang for example.
 ### 10. Dev/Prod Parity
 ### 11. Logs
 ### 12. Admin Processes
