@@ -48,7 +48,7 @@ This factor recommends to read configuration from environment variables. Yet usi
 The backing services of the services are:
 * RabbitMQ AMQP messaging provider
 * SQL databases
-* HTTP services of downstream uServices
+* HTTP services of downstream uServices.
 The factor recommends to inject the configuration (URL and credentials) as environment variables into the application/service and implement the application so that it can adapt to changes of these config values. Yet, using the service concept of Kubernetes, it is possible to change the actual backing service instance behind the service URL without changing the application configuration. So that the backing service can be changed/replaced w/o changes to application configuration as long as K8S dns based service discovery is used and the credentials of the backing service do not change. Otherwise, the new configuration will be injected to the environment and the upstream service may need to reload the configuration on the fly or restart.
 ### 5. Build, Release, Run
 
