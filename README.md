@@ -60,7 +60,9 @@ As the uServices are implemented with the Spring Cloud framework they are actual
 ### 8. Concurrency
 As desribed above the system is composed of stateless, share-nothing services. Therefore horizontal scaling is easily achieved by starting/stopping new service instances on demand, which can be achieved leveraging OpenShift's autoscale feature.
 ### 9. Disposability
-Unfortunately, saasddd because the service are implemented in Java, startup and shutdown still takes some 10 seconds, which is considered slow in comparison to a native executable uService implemented in GoLang for example.
+Unfortunately, because the service are implemented in Java, startup and shutdown still takes some 10 seconds, which is considered slow in comparison to a native executable uService implemented in GoLang for example. Yet, this is still order of magnitude faster compared to monolithic J2EE apps packaged as EAR files and deployed to full blown application servers.
+Besides proper graceful shutdown service have to be designed and implemented so that they are robust against sudden death (i.e. due to node failure). Therefore operations should be reentrant by being idempotent (as transactions should be avoided), so that disrupted service invocations can be repeated w/o any undesireable side effects.
 ### 10. Dev/Prod Parity
+As in the conceptual model there are 4 environments: DEV, IT, UAT and PROD complete parity is only maintained betwwen UAT and PROD. DEV may differ from IT as it contains the latest development version of a service. When a version of a service is deployed to UAT for acceptance testing all other down- and upstream as well as backing services are of the same version as in prod environment with PROD data. Besides many others on of the difference between DEV/IT and UAT/PROD environments is that in UAT data is copied from PROD, whereas in the DEV and IT environments it is synthetic.
 ### 11. Logs
 ### 12. Admin Processes
