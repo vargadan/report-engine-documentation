@@ -50,10 +50,11 @@ The backing services of the services are:
 * SQL databases
 * HTTP services of downstream uServices.
 
-This factor recommends to inject the configuration (URL and credentials) as environment variables into the application/service and implement the application so that it can adapt to changes of these config values. Yet, using the service concept of Kubernetes, it is possible to change the actual backing service instance behind the service URL without changing the application configuration. So that the backing service can be changed/replaced w/o changes to application configuration as long as K8S dns based service discovery is used and the credentials of the backing service do not change. Otherwise, the new configuration will be injected to the environment and the upstream service may need to reload the configuration on the fly or restart.
-### 5. Build, Release, Run
-
+This principle recommends to inject the configuration (URL and credentials) as environment variables into the application/service and implement the application so that it can adapt to changes of these config values. Yet, using the service concept of Kubernetes, it is possible to change the actual backing service instance behind the service URL without changing the application configuration. So that the backing service can be changed/replaced w/o changes to application configuration as long as K8S dns based service discovery is used and the credentials of the backing service do not change. Otherwise, the new configuration will be injected to the environment and the upstream service may need to reload the configuration on the fly or restart.
+### 5. Build, ~~Release~~Deploy, Run
+This principle is the separation of build, deploy and run phases. ~~Release~~ is an unfortunate naming as in DevOps terminology the term 'release' refers to enabling a functionality in the system, whereas deployment refers to placing new application code/packages into an environment. In the OpenShift platform these steps are clearly separated as the build process is defined in Jenkine pipelines, the deployment by means of deployment descriptors, whereas applications are run as containers on the nodes of the OPC cluster.
 ### 6. Processes
+Running the services as stateless processes is guaranteed.
 ### 7. Port Binding 
 ### 8. Concurrency
 ### 9. Disposability
