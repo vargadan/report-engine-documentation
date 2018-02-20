@@ -1,4 +1,4 @@
-node ('maven') {
+node {
 
 	def APP_1 = "report-order-manager"
 	def APP_2 = "dummy-report-factory"
