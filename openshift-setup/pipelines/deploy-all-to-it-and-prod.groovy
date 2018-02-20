@@ -51,7 +51,7 @@ def envSetup(project, appName, version, port, recreate) {
 		sh "oc delete deploymentconfig,service,routes -l app=${appName} -n ${project}"
 	}
 	
-	sh "oc tag ctr-cicd/${APP_NAME}:latest ${project}/${APP_NAME}:latest"	
+	sh "oc tag ctr-cicd/${appName}:latest ${project}/${appName}:latest"	
 	
 	//now we can create the app since it has either been deleted or it did not exist at all
  	sh "oc new-app ${appName}:latest -n ${project}"
