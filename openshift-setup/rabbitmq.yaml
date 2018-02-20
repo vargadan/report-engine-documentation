@@ -5,7 +5,6 @@ metadata:
 labels:
   template: rabbitmq
   app: rabbitmq
-  group: reportengine-dev
 metadata:
   annotations:
     description: Creates RabbitMQ instance for messaging

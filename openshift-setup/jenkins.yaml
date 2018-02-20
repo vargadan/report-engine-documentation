@@ -46,8 +46,10 @@ objects:
         containers:
         - capabilities: {}
           env:
-          - name: JENKINS_PASSWORD
-            value: ${JENKINS_PASSWORD}
+          - name: OPENSHIFT_ENABLE_OAUTH
+            value: 'true'
+          - name: OPENSHIFT_ENABLE_REDIRECT_PROMPT
+            value: 'true'
           - name: KUBERNETES_MASTER
             value: https://kubernetes.default:443
           - name: KUBERNETES_TRUST_CERTIFICATES
@@ -71,7 +73,8 @@ objects:
             timeoutSeconds: 3
           resources:
             limits:
-              memory: 1Gi
+              cpu: 2
+              memory: 2Gi
           securityContext:
             capabilities: {}
             privileged: false

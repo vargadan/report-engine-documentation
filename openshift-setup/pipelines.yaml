@@ -159,21 +159,21 @@ objects:
         type: GitHub
   status:
     lastVersion: 0
-# report-config-server
+# identity-server
 - apiVersion: v1
   kind: BuildConfig
   metadata:
     labels:
-      app: report-config-server
-      name: report-config-server-pipeline
-    name: report-config-server-pipeline
+      app: identity-server
+      name: identity-server-pipeline
+    name: identity-server-pipeline
   spec:
     runPolicy: SerialLatestOnly
     source:
       type: "Git"
       git:
         ref: master
-        uri: "https://github.com/vargadan/config-server"
+        uri: "https://github.com/vargadan/identity-server"
     strategy:
       jenkinsPipelineStrategy:
         jenkinsfilePath: pipeline.groovy

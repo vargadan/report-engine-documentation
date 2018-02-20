@@ -39,6 +39,7 @@ def envSetup(project, appName, version, port, recreate) {
 		script: "oc get deploymentconfig -l app=${appName} -n ${project}",
 		returnStdout: true
 	).trim()
+	
 	echo "GET_DC_OUT : ${GET_DC_OUT}"
 	appExists = GET_DC_OUT.contains(appName)
 	if (appExists && !recreate) {

@@ -1,3 +1,4 @@
-oc delete project reportengine-dev
-oc delete project reportengine-it
-oc delete project reportengine-cicd
+oc delete project ctr-cicd
+oc delete project ctr-dev
+oc delete project ctr-it
+oc delete project ctr-prod
