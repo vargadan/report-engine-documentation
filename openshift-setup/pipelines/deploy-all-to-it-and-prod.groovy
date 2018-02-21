@@ -37,6 +37,13 @@ node {
    		sh "oc tag ctr-cicd/${APP_5}:latest ${PROD_PROJECT}/${APP_5}:latest"
    		sh "oc tag ctr-cicd/${APP_6}:latest ${PROD_PROJECT}/${APP_6}:latest"
    		
+   		openshiftVerifyDeployment(deploymentConfig: "${APP_1}", namespace: ${PROD_PROJECT}, verbose: verbose)
+   		openshiftVerifyDeployment(deploymentConfig: "${APP_2}", namespace: ${PROD_PROJECT}, verbose: verbose)
+   		openshiftVerifyDeployment(deploymentConfig: "${APP_3}", namespace: ${PROD_PROJECT}, verbose: verbose)
+   		openshiftVerifyDeployment(deploymentConfig: "${APP_4}", namespace: ${PROD_PROJECT}, verbose: verbose)
+   		openshiftVerifyDeployment(deploymentConfig: "${APP_5}", namespace: ${PROD_PROJECT}, verbose: verbose)
+   		openshiftVerifyDeployment(deploymentConfig: "${APP_6}", namespace: ${PROD_PROJECT}, verbose: verbose)
+   		
    	}
 }
 
