@@ -24,12 +24,19 @@ node {
    	}
    	
    	stage('to PROD') {
-   		envSetup(PROD_PROJECT, APP_1, VERSION, PORT, true)
-   		envSetup(PROD_PROJECT, APP_2, VERSION, PORT, true)
-   		envSetup(PROD_PROJECT, APP_3, VERSION, PORT, true)
-   		envSetup(PROD_PROJECT, APP_4, VERSION, PORT, true)
-   		envSetup(PROD_PROJECT, APP_5, VERSION, PORT, true)
-   		envSetup(PROD_PROJECT, APP_6, VERSION, PORT, true)
+   		//envSetup(PROD_PROJECT, APP_1, VERSION, PORT, true)
+   		//envSetup(PROD_PROJECT, APP_2, VERSION, PORT, true)
+   		//envSetup(PROD_PROJECT, APP_3, VERSION, PORT, true)
+   		//envSetup(PROD_PROJECT, APP_4, VERSION, PORT, true)
+   		//envSetup(PROD_PROJECT, APP_5, VERSION, PORT, true)
+   		//envSetup(APP_1, APP_6, VERSION, PORT, true)
+   		sh "oc tag ctr-cicd/${APP_1}:latest ${PROD_PROJECT}/${APP_1}:latest"
+   		sh "oc tag ctr-cicd/${APP_2}:latest ${PROD_PROJECT}/${APP_2}:latest"
+   		sh "oc tag ctr-cicd/${APP_3}:latest ${PROD_PROJECT}/${APP_3}:latest"
+   		sh "oc tag ctr-cicd/${APP_4}:latest ${PROD_PROJECT}/${APP_4}:latest"
+   		sh "oc tag ctr-cicd/${APP_5}:latest ${PROD_PROJECT}/${APP_5}:latest"
+   		sh "oc tag ctr-cicd/${APP_6}:latest ${PROD_PROJECT}/${APP_6}:latest"
+   		
    	}
 }
 
