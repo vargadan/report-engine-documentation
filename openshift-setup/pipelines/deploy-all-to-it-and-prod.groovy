@@ -14,6 +14,8 @@ node {
    	
    	def PORT = 8080
    	
+   	def verbose = false;
+   	
    	stage('to IT') {
    		envSetup(IT_PROJECT, APP_1, VERSION, PORT, true)
    		envSetup(IT_PROJECT, APP_2, VERSION, PORT, true)
@@ -21,6 +23,13 @@ node {
    		envSetup(IT_PROJECT, APP_4, VERSION, PORT, true)
    		envSetup(IT_PROJECT, APP_5, VERSION, PORT, true)
    		envSetup(IT_PROJECT, APP_6, VERSION, PORT, true)
+   		
+   		openshiftVerifyDeployment(deploymentConfig: APP_1, namespace: IT_PROJECT, verbose: verbose)
+   		openshiftVerifyDeployment(deploymentConfig: APP_2, namespace: IT_PROJECT, verbose: verbose)
+   		openshiftVerifyDeployment(deploymentConfig: APP_3, namespace: IT_PROJECT, verbose: verbose)
+   		openshiftVerifyDeployment(deploymentConfig: APP_4, namespace: IT_PROJECT, verbose: verbose)
+   		openshiftVerifyDeployment(deploymentConfig: APP_5, namespace: IT_PROJECT, verbose: verbose)
+   		openshiftVerifyDeployment(deploymentConfig: APP_6, namespace: IT_PROJECT, verbose: verbose)
    	}
    	
    	stage('to PROD') {
@@ -37,12 +46,12 @@ node {
    		sh "oc tag ctr-cicd/${APP_5}:latest ${PROD_PROJECT}/${APP_5}:latest"
    		sh "oc tag ctr-cicd/${APP_6}:latest ${PROD_PROJECT}/${APP_6}:latest"
    		
-   		openshiftVerifyDeployment(deploymentConfig: "${APP_1}", namespace: ${PROD_PROJECT}, verbose: verbose)
-   		openshiftVerifyDeployment(deploymentConfig: "${APP_2}", namespace: ${PROD_PROJECT}, verbose: verbose)
-   		openshiftVerifyDeployment(deploymentConfig: "${APP_3}", namespace: ${PROD_PROJECT}, verbose: verbose)
-   		openshiftVerifyDeployment(deploymentConfig: "${APP_4}", namespace: ${PROD_PROJECT}, verbose: verbose)
-   		openshiftVerifyDeployment(deploymentConfig: "${APP_5}", namespace: ${PROD_PROJECT}, verbose: verbose)
-   		openshiftVerifyDeployment(deploymentConfig: "${APP_6}", namespace: ${PROD_PROJECT}, verbose: verbose)
+   		openshiftVerifyDeployment(deploymentConfig: APP_1, namespace: PROD_PROJECT, verbose: verbose)
+   		openshiftVerifyDeployment(deploymentConfig: APP_2, namespace: PROD_PROJECT, verbose: verbose)
+   		openshiftVerifyDeployment(deploymentConfig: APP_3, namespace: PROD_PROJECT, verbose: verbose)
+   		openshiftVerifyDeployment(deploymentConfig: APP_4, namespace: PROD_PROJECT, verbose: verbose)
+   		openshiftVerifyDeployment(deploymentConfig: APP_5, namespace: PROD_PROJECT, verbose: verbose)
+   		openshiftVerifyDeployment(deploymentConfig: APP_6, namespace: PROD_PROJECT, verbose: verbose)
    		
    	}
 }
