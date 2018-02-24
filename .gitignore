@@ -12,3 +12,9 @@
 target
 
 config-server/config-repo/
+
+.scannerwork/.sonar_lock
+
+*.txt
+
+sonar.sh
