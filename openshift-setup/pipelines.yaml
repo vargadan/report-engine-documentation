@@ -184,3 +184,28 @@ objects:
         type: GitHub
   status:
     lastVersion: 0
+# all
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: ctr
+      name: ctr-it-prod-pipeline
+    name: ctr-it-prod-pipeline
+  spec:
+    runPolicy: SerialLatestOnly
+    source:
+      type: "Git"
+      git:
+        ref: master
+        uri: "https://github.com/vargadan/reporting-engine-openshift-setup"
+    strategy:
+      jenkinsPipelineStrategy:
+        jenkinsfilePath: openshift-setup/deploy-all-to-it-and-prod.groovy
+      type: JenkinsPipeline
+    triggers:
+      - github:
+          secret: ${WEBHOOK_SECRET}
+        type: GitHub
+  status:
+    lastVersion: 0
