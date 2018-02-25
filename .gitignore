@@ -18,3 +18,7 @@ config-server/config-repo/
 *.txt
 
 sonar.sh
+
+identity-server/
+
+rogue-service/
