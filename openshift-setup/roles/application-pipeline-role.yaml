@@ -1,13 +1,11 @@
-[root@ip-178-31-182-85 centos]# vi cicd-prod.yaml 
-
 apiVersion: v1
 kind: ClusterRole
 metadata:
   annotations:
-    openshift.io/description: Grants the right to build, push and pull images from
-      within a project.  Used primarily with service accounts for builds.
+    openshift.io/description: Role for application pipeline service accounts, all it can do is
+      add an image to the imagestream, that is it
   creationTimestamp: null
-  name: cicd-prod
+  name: application-pipeline
 rules:
 - apiGroups:
   - image.openshift.io

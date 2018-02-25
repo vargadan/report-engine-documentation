@@ -1,21 +1,29 @@
 #!/bin/bash
 
+#create projects
+oc new-project ctr-env --display-name="Client Tax Reporting - Environment Automation"
 oc new-project ctr-cicd --display-name="Client Tax Reporting - CICD"
-oc policy add-role-to-user edit system:serviceaccount:ctr-cicd:jenkins -n ctr-cicd
-
-oc process -f nexus.yaml | oc create -f - -n ctr-cicd
-oc process -f pipelines.yaml | oc create -f - -n ctr-cicd
-
 oc new-project ctr-dev --display-name="Client Tax Reporting - DEV"
-oc policy add-role-to-user edit system:serviceaccount:ctr-cicd:jenkins -n ctr-dev
-oc process -f rabbitmq.yaml | oc create -f - -n ctr-dev
-
 oc new-project ctr-it --display-name="Client Tax Reporting - IT"
-oc policy add-role-to-user edit system:serviceaccount:ctr-cicd:jenkins -n ctr-it
-oc process -f rabbitmq.yaml | oc create -f - -n ctr-it
-
 oc new-project ctr-prod --display-name="Client Tax Reporting - PROD"
-oc policy add-role-to-user edit system:serviceaccount:ctr-cicd:jenkins -n ctr-prod
-oc process -f rabbitmq.yaml | oc create -f - -n ctr-prod
+
+#create roles
+./roles/create-pipeline-roles.sh
+
+oc policy add-role-to-user environment-pipeline system:serviceaccount:ctr-env:jenkins -n ctr-cicd
+oc policy add-role-to-user environment-pipeline system:serviceaccount:ctr-env:jenkins -n ctr-dev
+oc policy add-role-to-user application-pipeline system:serviceaccount:ctr-cicd:jenkins -n ctr-dev
+
+oc policy add-role-to-user environment-pipeline system:serviceaccount:ctr-env:jenkins -n ctr-it
+oc policy add-role-to-user application-pipeline system:serviceaccount:ctr-cicd:jenkins -n ctr-it
+
+oc policy add-role-to-user environment-pipeline system:serviceaccount:ctr-env:jenkins -n ctr-prod
+oc policy add-role-to-user application-pipeline system:serviceaccount:ctr-cicd:jenkins -n ctr-prod
+
+#create environment automation resources
+oc process -f pipelines.environment.yaml | oc create -f - -n ctr-env
+#create application cicd resources
+oc process -f nexus.yaml | oc create -f - -n ctr-cicd
+oc process -f pipelines.application.yaml | oc create -f - -n ctr-cicd
 
 oc project ctr-cicd

@@ -198,10 +198,10 @@ objects:
       type: "Git"
       git:
         ref: master
-        uri: "https://github.com/vargadan/reporting-engine-openshift-setup"
+        uri: "uri: "https://github.com/vargadan/reporting-engine/"
     strategy:
       jenkinsPipelineStrategy:
-        jenkinsfilePath: openshift-setup/deploy-all-to-it-and-prod.groovy
+        jenkinsfilePath: openshift-setup/pipelines/deploy-all-to-it-and-prod.groovy
       type: JenkinsPipeline
     triggers:
       - github:
