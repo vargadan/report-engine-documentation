@@ -25,6 +25,3 @@
 [submodule "report-renderer"]
 	path = report-renderer
 	url = https://github.com/vargadan/report-renderer
-[submodule "environment"]
-	path = environment
-	url = https://github.com/vargadan/reportengine-environment
