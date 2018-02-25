@@ -24,7 +24,7 @@ node {
    	}       
    	
    	stage('DEV setup') {
-        rabbitMq(DEV_PROJECT);
+                rabbitMq(DEV_PROJECT);
    		envSetup(DEV_PROJECT, APP_1, VERSION, PORT, true)
    		envSetup(DEV_PROJECT, APP_2, VERSION, PORT, true)
    		envSetup(DEV_PROJECT, APP_3, VERSION, PORT, true)
@@ -34,7 +34,7 @@ node {
    	}
    	
    	stage('IT setup') {
-        rabbitMq(DEV_PROJECT);
+                rabbitMq(DEV_PROJECT);
    		envSetup(IT_PROJECT, APP_1, VERSION, PORT, true)
    		envSetup(IT_PROJECT, APP_2, VERSION, PORT, true)
    		envSetup(IT_PROJECT, APP_3, VERSION, PORT, true)
@@ -44,7 +44,7 @@ node {
    	}
 
    	stage('PROD setup') {
-        rabbitMq(DEV_PROJECT);
+                rabbitMq(DEV_PROJECT);
    		envSetup(PROD_PROJECT, APP_1, VERSION, PORT, true)
    		envSetup(PROD_PROJECT, APP_2, VERSION, PORT, true)
    		envSetup(PROD_PROJECT, APP_3, VERSION, PORT, true)
@@ -56,7 +56,7 @@ node {
 }
 
 def rabbitMq(project) {
-    sh "oc delete service,routes -l app=$rabbitmq -n ${project}"
+    sh "oc delete service,routes -l app=rabbitmq -n ${project}"
     sh "oc process -f rabbitmq.yaml | oc create -f - -n ${project}"
 }
 
