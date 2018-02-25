@@ -17,7 +17,7 @@ node {
    	
    	def verbose = false;
 
-    def GIT_URL = "https://github.com/vargadan/reporting-engine/";
+    def GIT_URL = "https://github.com/vargadan/reportengine-environment/";
 
    	stage ('Init') {
    		git branch: 'master', url: "${GIT_URL}"
