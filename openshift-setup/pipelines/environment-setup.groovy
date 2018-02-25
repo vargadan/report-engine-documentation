@@ -17,7 +17,7 @@ node {
    	
    	def verbose = false;
 
-    def GIT_URL = "https://github.com/vargadan/reporting-engine/openshift-setup";
+    def GIT_URL = "https://github.com/vargadan/reporting-engine/";
 
    	stage ('Init') {
    		git branch: 'master', url: "${GIT_URL}"
